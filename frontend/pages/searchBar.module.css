@@ -1,0 +1,65 @@
+/* SearchBar.module.css */
+
+/* General Container Styling */
+.main-container {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Header Section Styling */
+.headerContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 80%;
+  margin-bottom: 20px;
+}
+
+/* Title Styling */
+.appTitle {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #000706ea;
+  font-family: 'Playfair Display', sans-serif;
+}
+
+/* Search Bar & Button Container */
+.searchContainer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Search Bar Styling */
+.searchBar {
+  width: 500px; 
+  padding: 8px 12px;
+  border: 2px solid #cccccc;
+  border-radius: 20px;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.searchBar:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Search Button Styling */
+.searchButton {
+  
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.searchButton:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}

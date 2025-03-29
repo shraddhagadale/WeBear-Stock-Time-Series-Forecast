@@ -1,54 +1,97 @@
 // index.tsx (Frontend - React/Next.js)
-
 import { useState } from 'react';
 import axios from 'axios';
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import styles from './SearchBar.module.css';    // Importing the CSS for Search Bar & Button
+import cardStyles from './Cards.module.css';     // Importing the CSS for Cards
+
+
+
+interface StockData {
+  previous_day_info: {
+    previous_close: number;
+    previous_open: number;
+    previous_high: number;
+    volume: number;
+  };
+  charts: {
+    mav: string;
+    forecast: string;
+    trend: string;
+  };
+}
 
 const Home = () => {
   const [ticker, setTicker] = useState("");
-  const [forecast, setForecast] = useState(null);
+  const [stockData, setStockData] = useState<StockData | null>(null);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const handleFetch = async () => {
     setLoading(true);
+    setError(null);
+    setStockData(null);
+
     try {
       const response = await axios.post("http://127.0.0.1:8000/forecast", { ticker });
-      setForecast(response.data);
+      setStockData(response.data);
     } catch (error) {
-      console.error("Error fetching forecast:", error);
+      setError("Failed to fetch data. Please try again.");
+      console.error("Error fetching stock data:", error);
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen">
-      <Card className="w-full max-w-md p-5 shadow-lg rounded-2xl">
-        <CardContent>
-          <h1 className="text-xl mb-4">Stock Price Forecasting</h1>
+    <div className="main-container">
+      {/* Header Section */}
+      <div className={styles.headerContainer}>
+        {/* Title */}
+        <h1 className={styles.appTitle}>📈 Stock Price Forecasting</h1>
+
+        {/* Search Bar & Button */}
+        <div className={styles.searchContainer}>
           <input
             type="text"
             value={ticker}
             onChange={(e) => setTicker(e.target.value)}
             placeholder="Enter Stock Ticker (e.g., AAPL)"
-            className="border p-2 rounded-md w-full mb-4"
+            className={styles.searchBar}
           />
-          <Button onClick={handleFetch} disabled={loading}>
-            {loading ? "Loading..." : "Get Forecast"}
-          </Button>
+          <button 
+            onClick={handleFetch} 
+            disabled={loading} 
+            className={styles.searchButton}
+          >
+            Search
+          </button>
+        </div>
+      </div>
 
-          {forecast && (
-            <div className="mt-4">
-              <h2 className="text-lg">Forecast Results</h2>
-              <p>Previous Close: {forecast.previous_day_info.previous_close}</p>
-              <p>Previous Open: {forecast.previous_day_info.previous_open}</p>
-              <p>Previous High: {forecast.previous_day_info.previous_high}</p>
-              <p>Forecast: {forecast.forecast.join(", ")}</p>
-            </div>
-          )}
-        </CardContent>
-      </Card>
+      {/* Display Error Message if any */}
+      {error && <div className="text-red-500 text-center mb-4">{error}</div>}
+      
+      {/* Cards Section */}
+      {stockData && (
+        <div className={cardStyles.cardsContainer}>
+          <div className={cardStyles.card}>
+            <div className="card-title">Previous Close</div>
+            <div className="card-content">{stockData.previous_day_info.previous_close}</div>
+          </div>
+          <div className={cardStyles.card}>
+            <div className="card-title">Previous Open</div>
+            <div className="card-content">{stockData.previous_day_info.previous_open}</div>
+          </div>
+          <div className={cardStyles.card}>
+            <div className="card-title">High</div>
+            <div className="card-content">{stockData.previous_day_info.previous_high}</div>
+          </div>
+          <div className={cardStyles.card}>
+            <div className="card-title">Volume</div>
+            <div className="card-content">{stockData.previous_day_info.volume}</div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
