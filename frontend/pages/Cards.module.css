@@ -1,65 +1,39 @@
-/* Cards.css */
-
-/* Container for Cards */
-.cards-container {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    margin-top: 30px;
-  }
-  
-  /* Individual Card Styling */
-  .card {
-    background: white;
-    border: 1px solid #e0e0e0;
-    border-radius: 15px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    width: 150px;
-    text-align: center;
-    transition: all 0.3s ease;
-  }
-  
-  .card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 10px rgba(0, 123, 255, 0.3);
-  }
-  
-  /* Card Title Styling */
-  .card-title {
-    font-size: 1rem;
-    color: #007bff;
-    margin-bottom: 5px;
-  }
-  
-  /* Card Content Styling */
-  .card-content {
-    font-size: 1.25rem;
-    font-weight: bold;
-  }
-
-  /* Search Button Styling */
-.searchButton {
-  background-color: white;
-  border: none;
-  border-radius: 50%;
-  padding: 5px;
-  cursor: pointer;
-  transition: transform 0.2s;
+.infoContainer {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  justify-content: space-around;
+  margin-top: 20px;
+  padding: 10px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }
 
-.searchButton:hover {
-  transform: scale(1.05);
+.forecastPlot {
+  margin-top: 30px;
+  text-align: center;
 }
 
-/* Search Icon Styling */
-.searchIcon {
-  height: 20px;  /* Size of the image */
-  width: 20px;
-  object-fit: contain;
+.plotsContainer {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 30px;
 }
 
-  
+.plotItem {
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 15px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  width: 48%;
+  text-align: center;
+}
+
+.plotItem img, .forecastPlot img {
+  max-width: 100%;
+  max-height: 400px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  border-radius: 10px;
+}

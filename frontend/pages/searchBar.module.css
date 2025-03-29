@@ -1,6 +1,3 @@
-/* SearchBar.module.css */
-
-/* General Container Styling */
 .main-container {
   padding: 20px;
   display: flex;
@@ -20,9 +17,7 @@
 /* Title Styling */
 .appTitle {
   font-size: 2.5rem;
-  font-weight: bold;
   color: #000706ea;
-  font-family: 'Playfair Display', sans-serif;
 }
 
 /* Search Bar & Button Container */
@@ -47,9 +42,7 @@
   box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
-/* Search Button Styling */
 .searchButton {
-  
   background-color: #007bff;
   color: white;
   border: none;
