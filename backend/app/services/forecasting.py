@@ -81,27 +81,10 @@ def train_arima_model(data: pd.DataFrame, stock_data: pd.DataFrame,
     plt.plot(train.index, train['y'], label="Training Data")
     plt.plot(forecasts.index, forecasts, color="orange", label="Forecast")
     plt.fill_between(forecasts.index, lower, upper, color='pink', alpha=0.3, label="Confidence Interval")
-    plt.title("Stock Forecast with Confidence Interval")
     plt.xlabel("Date")
     plt.ylabel("Price")
     plt.legend()
     forecast_chart = plot_to_base64()
-
-    # plt.figure(figsize=(10, 5))
-    # plt.plot(train.index, train['y'], label="Training Data")
-    # plt.plot(test.index, test['y'], label="Actual Price", color="blue")
-    # plt.plot(test.index, forecasts, label="Forecasted Price", color="orange")
-    # plt.fill_between(test.index, lower, upper, color='pink', alpha=0.2, label="Confidence Interval")
-    # plt.title("Stock Price Forecast with Confidence Interval")
-    # plt.xlabel("Date")
-    # plt.ylabel("Stock Price")
-    # plt.legend()
-    # forecast_chart = plot_to_base64()
-
-    # buf = BytesIO()
-    # plt.savefig(buf, format="png")
-    # forecast_chart = base64.b64encode(buf.getvalue()).decode('utf-8')
-    # plt.close()
 
     print("Forecast chart saved.")
 
@@ -112,32 +95,20 @@ def train_arima_model(data: pd.DataFrame, stock_data: pd.DataFrame,
     plt.plot(data.index, data['y'], label="Stock Price")
     plt.plot(data.index, data['MAV_10'], label="10-Day MAV", color="red")
     plt.plot(data.index, data['MAV_50'], label="50-Day MAV", color="green")
-    plt.title("Moving Average (MAV) Chart")
     plt.xlabel("Date")
     plt.ylabel("Stock Price")
     plt.legend()
     mav_chart = plot_to_base64()
-
-    # buf = BytesIO()
-    # plt.savefig(buf, format="png")
-    # mav_chart = base64.b64encode(buf.getvalue()).decode('utf-8')
-    # plt.close()
 
     print("MAV chart saved.")
 
     # Plot Trend Chart
     plt.figure(figsize=(10, 5))
     plt.plot(data.index, data['y'], label="Stock Price", color="blue")
-    plt.title("Trend of Stock Prices")
     plt.xlabel("Date")
     plt.ylabel("Stock Price")
     plt.legend()
     trend_chart = plot_to_base64()
-
-    # buf = BytesIO()
-    # plt.savefig(buf, format="png")
-    # trend_chart = base64.b64encode(buf.getvalue()).decode('utf-8')
-    # plt.close()
 
     print("Trend chart saved.")
 
@@ -145,16 +116,10 @@ def train_arima_model(data: pd.DataFrame, stock_data: pd.DataFrame,
     plt.figure(figsize=(10, 5))
     plt.plot(data.index, data['y'], label="Historical Trend", color="blue")
     plt.plot(forecasts.index, forecasts, label="Forecast", color="orange")
-    plt.title("Trend + Future Forecast")
     plt.xlabel("Date")
     plt.ylabel("Price")
     plt.legend()
     trend_forecast_chart = plot_to_base64()
-
-    # buf = BytesIO()
-    # plt.savefig(buf, format="png")
-    # trend_chart = base64.b64encode(buf.getvalue()).decode('utf-8')
-    # plt.close()
 
     return {
         "previous_day_info": prev_day_info,
