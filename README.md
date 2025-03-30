@@ -19,7 +19,7 @@ Users can input a stock ticker along with a date range to visualize historical d
 
 ---
 
-## ⚙️ Tech Stack
+## Tech Stack
 
 | Layer       | Tech Stack                       |
 |-------------|----------------------------------|
@@ -31,7 +31,7 @@ Users can input a stock ticker along with a date range to visualize historical d
 
 ---
 
-## 🚀 Installation
+## Installation
 
 ### 1. Clone the Repository
 
@@ -55,7 +55,7 @@ pip install -r requirements.txt
 uvicorn main:app --reload
 ```
 
-## 📌 How It Works
+## How It Works
 
 1. User types a stock symbol and selects a date range
 2. Clicks Search 
