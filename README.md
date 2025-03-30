@@ -70,8 +70,8 @@ Runs at: http://localhost:8000
 ```json
 {
   "ticker": "AAPL",
-  "start_date": "2020-01-01",
-  "end_date": "2021-01-01"
+  "start_date": "21-01-2022",
+  "end_date": "15-03-2022"
 }
 ```
 4. Backend responds with:
