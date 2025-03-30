@@ -3,21 +3,23 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
+  z-index: 1;
 }
 
 /* Header Section Styling */
 .headerContainer {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  width: 80%;
-  margin-bottom: 20px;
+  gap: 20px;
 }
-
 /* Title Styling */
 .appTitle {
-  font-size: 2.5rem;
-  color: #000706ea;
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem;
+  font-weight: bold;
+  color: #1a1a1a;
 }
 
 /* Search Bar & Button Container */
@@ -55,4 +57,60 @@
 .searchButton:hover {
   background-color: #0056b3;
   transform: scale(1.05);
+}
+
+.dateInputsContainer {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 16px;
+  font-size: 14px;
+  color: #333;
+}
+
+.dateInputsWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+
+
+.dateInputGroup label {
+  margin-bottom: 4px;
+  font-weight: 500;
+  font-size: 14px;
+  color: #333;
+}
+
+/* First row: search bar and button */
+.searchRow {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+/* Date row: centered below */
+.dateInputsRow {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 10px;
+}
+
+.dateInputGroup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.dateInput {
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  width: 180px;
+  margin-top: 4px;
 }
