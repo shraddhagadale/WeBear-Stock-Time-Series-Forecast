@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 import Head from 'next/head';
-import styles from './SearchBar.module.css';
+import styles from './searchBar.module.css';
 import cardStyles from './Cards.module.css';
 import backgroundStyles from '../styles/Background.module.css';
 import { ToastContainer, toast } from 'react-toastify';
@@ -43,7 +43,7 @@ const Home = () => {
 
 
   const handleFetch = async () => {
-    const loading = true; // ⚠️ TEMPORARY override to test visibility
+    setLoading(true);
 
     if (!startDate || !endDate) {
       toast.error("Start Date and End Date are required.");
@@ -77,8 +77,9 @@ const Home = () => {
   return (
     <>
       <Head>
-        <title>Stock Price Forecasting</title>
+        <title>WeBear: Stock Forecast</title>
         <meta name="description" content="Stock Price Forecasting App" />
+        <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <div className={backgroundStyles.backgroundWrapper}>
@@ -86,50 +87,58 @@ const Home = () => {
       </div>
 
       <div className="main-container">
-        <div className={styles.headerContainer}>
-          <div className={styles.topRow}>
-            <h1 className={styles.appTitle}>📈 Stock Price Forecasting</h1>
-            <input
-              type="text"
-              value={ticker}
-              onChange={(e) => setTicker(e.target.value)}
-              placeholder="Enter Stock Ticker (e.g., AAPL)"
-              className={styles.searchBar}
-            />
-            <button
-              onClick={handleFetch}
-              disabled={loading}
-              className={styles.searchButton}
-            >
-              Search
-            </button>
-          </div>
+      <div className={styles.headerContainer}>
+  <div className={styles.topRow}>
+    <h1 className={styles.appTitle}><center>WeBear: Stock Forecast</center></h1>
 
-          <div className={styles.dateInputsRow}>
-            <div className={styles.dateInputGroup}>
-              <label htmlFor="start-date">Start Date:</label>
-              <input
-                type="date"
-                id="start-date"
-                className={styles.dateInput}
-                placeholder="mm/dd/yyyy"
-                value={startDate}
-                onChange={(e) => setStartDate(e.target.value)}
-              />
-            </div>
-            <div className={styles.dateInputGroup}>
-              <label htmlFor="end-date">End Date:</label>
-              <input
-                type="date"
-                id="end-date"
-                className={styles.dateInput}
-                placeholder="mm/dd/yyyy"
-                value={endDate}
-                onChange={(e) => setEndDate(e.target.value)}
-              />
-            </div>
-          </div>
-        </div>
+    <input
+      type="text"
+      value={ticker}
+      onChange={(e) => setTicker(e.target.value)}
+      onKeyDown={(e) => {
+        if (e.key === "Enter") {
+          handleFetch();
+        }
+      }}
+      placeholder="Enter Stock Ticker (e.g., AAPL)"
+      className={styles.searchBar}
+    />
+    <button
+      onClick={handleFetch}
+      disabled={loading}
+      className={styles.searchButton}
+    >
+      Search
+    </button>
+  </div>
+
+  <div className={styles.dateInputsRow}>
+    <div className={styles.dateInputGroup}>
+      <label htmlFor="start-date">Start Date:</label>
+      <input
+        type="date"
+        id="start-date"
+        className={styles.dateInput}
+        placeholder="mm/dd/yyyy"
+        value={startDate}
+        onChange={(e) => setStartDate(e.target.value)}
+      />
+    </div>
+    <div className={styles.dateInputGroup}>
+      <label htmlFor="end-date">End Date:</label>
+      <input
+        type="date"
+        id="end-date"
+        className={styles.dateInput}
+        placeholder="mm/dd/yyyy"
+        value={endDate}
+        onChange={(e) => setEndDate(e.target.value)}
+      />
+    </div>
+  </div>
+</div>
+
+      
 
         {error && <div className="text-red-500 text-center mb-4">{error}</div>}
 
@@ -142,7 +151,6 @@ const Home = () => {
 
         {stockData && (
           <>
-
             <div className={cardStyles.infoContainer}>
               <div className={cardStyles.infoCard}>
                 <div className={cardStyles.cardTitle}>Open</div>
@@ -208,18 +216,17 @@ const Home = () => {
               </div>
             </div>
             {selectedChart && (
-  <div className={cardStyles.modalOverlay}>
-    <div className={cardStyles.modalContent}>
-      <button className={cardStyles.closeButton} onClick={handleCloseModal}>X</button>
-      <img
-        src={`data:image/png;base64,${selectedChart}`}
-        alt="Enlarged Chart"
-        className={cardStyles.enlargedChart}
-      />
-    </div>
-  </div>
-)}
-
+              <div className={cardStyles.modalOverlay}>
+                <div className={cardStyles.modalContent}>
+                  <button className={cardStyles.closeButton} onClick={handleCloseModal}>X</button>
+                  <img
+                    src={`data:image/png;base64,${selectedChart}`}
+                    alt="Enlarged Chart"
+                    className={cardStyles.enlargedChart}
+                  />
+                </div>
+              </div>
+            )}
           </>
         )}
       </div>
