@@ -1,4 +1,6 @@
 # WeBear : Stock Forecast
+Predict stock trends with historical & future forecasts using ARIMA.
+
 
 ## Overview
 
@@ -26,7 +28,7 @@ Users can input a stock ticker along with a date range to visualize historical d
 | Frontend    | React + Next.js                  |
 | Backend     | FastAPI                          |
 | Styling     | CSS Modules                      |
-| Forecasting | ARIMA (AutoRegressive Model)     |
+| Forecasting | ARIMA (AutoRegressive Integrated Moving Average)|
 | Visualization | Base64-encoded PNG chart images |
 
 ---
@@ -69,7 +71,7 @@ uvicorn main:app --reload
 ```
 4. Backend responds with:
   - Previous Close, Open, High, Volume
-  - Base64-encoded charts for MAV, Forecast, Trend and Future Forcast
+  - Base64-encoded charts for MAV, Forecast, Trend and Future Forecast
 5. Frontend displays the stats along with interactive charts.
 
 
