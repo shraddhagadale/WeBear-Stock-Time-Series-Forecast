@@ -7,14 +7,13 @@
   z-index: 1;
 }
 
-/* Header Section Styling */
 .headerContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 20px;
 }
-/* Title Styling */
+
 .appTitle {
   font-family: 'Playfair Display', serif;
   font-size: 2.2rem;
@@ -22,14 +21,12 @@
   color: #1a1a1a;
 }
 
-/* Search Bar & Button Container */
 .searchContainer {
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
-/* Search Bar Styling */
 .searchBar {
   width: 500px; 
   padding: 8px 12px;

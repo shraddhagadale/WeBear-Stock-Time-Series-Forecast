@@ -1,29 +1,22 @@
-/* Background.module.css */
-
 .backgroundWrapper {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(135deg, rgb(182, 209, 250), rgb(182, 209, 250));
-    background-attachment: fixed;
-    z-index: -1;
-    overflow: hidden; 
-  }
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgb(182, 209, 250), rgb(182, 209, 250));
+  background-attachment: fixed;
+  z-index: -1;
+  overflow: hidden; 
+}
   
-  .waveOverlay {
-    position: absolute;
-    bottom: -100px;
-    left: -50px;
-    right: -50px;
-    height: 300px;
-    background: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.8), transparent 70%);
-    transform: scale(1.8);
-    border-radius: 50%;
-  
-    
-  }
-
-
-  
+.waveOverlay {
+  position: absolute;
+  bottom: -100px;
+  left: -50px;
+  right: -50px;
+  height: 300px;
+  background: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.8), transparent 70%);
+  transform: scale(1.8);
+  border-radius: 50%;
+}

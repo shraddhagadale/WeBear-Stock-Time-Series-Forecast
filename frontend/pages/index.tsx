@@ -1,4 +1,3 @@
-// index.tsx (Frontend - React/Next.js)
 import { useState } from 'react';
 import axios from 'axios';
 import Head from 'next/head';
@@ -17,13 +16,14 @@ interface StockData {
     mav: string;
     forecast: string;
     trend: string;
+    trend_forecast: string;
   };
 }
 
 const Home = () => {
   const [ticker, setTicker] = useState("");
-  const [startDate, setStartDate] = useState("");      // ✅ Added state for start date
-  const [endDate, setEndDate] = useState("");          // ✅ Added state for end date
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
   const [stockData, setStockData] = useState<StockData | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -36,8 +36,8 @@ const Home = () => {
     try {
       const response = await axios.post("http://localhost:8000/forecast", {
         ticker,
-        start_date: startDate,    // ✅ send to backend
-        end_date: endDate         // ✅ send to backend
+        start_date: startDate,
+        end_date: endDate
       });
       setStockData(response.data);
     } catch (error) {
@@ -55,14 +55,12 @@ const Home = () => {
         <meta name="description" content="Stock Price Forecasting App" />
       </Head>
 
-      {/* Background Layer */}
       <div className={backgroundStyles.backgroundWrapper}>
         <div className={backgroundStyles.waveOverlay} />
       </div>
 
       <div className="main-container">
       <div className={styles.headerContainer}>
-  {/* Title + Search Bar + Button (same row) */}
   <div className={styles.topRow}>
     <h1 className={styles.appTitle}>📈 Stock Price Forecasting</h1>
 
@@ -82,7 +80,6 @@ const Home = () => {
     </button>
   </div>
 
-  {/* Date Inputs (new centered line below) */}
   <div className={styles.dateInputsRow}>
     <div className={styles.dateInputGroup}>
       <label htmlFor="start-date">Start Date:</label>
@@ -126,6 +123,10 @@ const Home = () => {
               <div className={cardStyles.plotItem}>
                 <h2>Forecast Plot</h2>
                 <img src={`data:image/png;base64,${stockData.charts.forecast}`} alt="Forecast Chart" />
+              </div>
+              <div className={cardStyles.plotItem}>
+                <h2>Future Forecast Plot</h2>
+                <img src={`data:image/png;base64,${stockData.charts.trend_forecast}`} alt="Future Forecast Chart" />
               </div>
             </div>
 
