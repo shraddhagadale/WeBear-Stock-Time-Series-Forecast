@@ -6,7 +6,8 @@
         "axios": "^1.4.0",
         "next": "^15.2.4",
         "react": "18.2.0",
-        "react-dom": "18.2.0"
+        "react-dom": "18.2.0",
+        "react-toastify": "^11.0.5"
     },
     "scripts": {
         "dev": "next dev",

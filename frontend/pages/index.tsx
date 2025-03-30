@@ -4,6 +4,11 @@ import Head from 'next/head';
 import styles from './SearchBar.module.css';
 import cardStyles from './Cards.module.css';
 import backgroundStyles from '../styles/Background.module.css';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
+
 
 interface StockData {
   previous_day_info: {
@@ -26,9 +31,23 @@ const Home = () => {
   const [endDate, setEndDate] = useState("");
   const [stockData, setStockData] = useState<StockData | null>(null);
   const [loading, setLoading] = useState(false);
+
+
   const [error, setError] = useState<string | null>(null);
 
   const handleFetch = async () => {
+    const loading = true; // ⚠️ TEMPORARY override to test visibility
+
+    if (!startDate || !endDate) {
+      toast.error("Start Date and End Date are required.");
+      return;
+    }
+  
+    if (new Date(endDate) <= new Date(startDate)) {
+      toast.error("End Date must be greater than Start Date.");
+      return;
+    }
+
     setLoading(true);
     setError(null);
     setStockData(null);
@@ -41,7 +60,7 @@ const Home = () => {
       });
       setStockData(response.data);
     } catch (error) {
-      setError("Failed to fetch data. Please try again.");
+      toast.error("Failed to fetch data. Please try again.");
       console.error("Error fetching stock data:", error);
     } finally {
       setLoading(false);
@@ -110,6 +129,13 @@ const Home = () => {
 
         {error && <div className="text-red-500 text-center mb-4">{error}</div>}
 
+        {loading && (
+          <div className={styles.loadingContainer}>
+            <div className={styles.spinner}></div>
+            <p>Loading data, please wait...</p>
+          </div>
+        )}
+
         {stockData && (
           <>
             <div className={cardStyles.infoContainer}>
@@ -143,6 +169,7 @@ const Home = () => {
           </>
         )}
       </div>
+      <ToastContainer position="top-center" />
     </>
   );
 };
