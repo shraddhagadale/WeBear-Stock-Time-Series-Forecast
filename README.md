@@ -48,7 +48,7 @@ cd frontend
 npm install
 npm run dev
 ```
-Visit http://localhost:3000
+Runs at: http://localhost:3000
 
 ### 3. Setup Backend
 ```bash
@@ -56,6 +56,14 @@ cd backend
 pip install -r requirements.txt
 uvicorn main:app --reload
 ```
+Runs at: http://localhost:8000
+
+### 4. Docker Setup (Alternative)
+```bash
+docker-compose up --build
+```
+Frontend: http://localhost:3000
+Backend API: http://localhost:8000
 
 ## How It Works
 
