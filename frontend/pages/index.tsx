@@ -31,6 +31,16 @@ const Home = () => {
 
 
   const [error, setError] = useState<string | null>(null);
+  const [selectedChart, setSelectedChart] = useState<string | null>(null);
+
+  const handleChartClick = (chart: string) => {
+    setSelectedChart(chart);
+  };
+
+  const handleCloseModal = () => {
+    setSelectedChart(null);
+  };
+
 
   const handleFetch = async () => {
     const loading = true; // ⚠️ TEMPORARY override to test visibility
@@ -132,6 +142,7 @@ const Home = () => {
 
         {stockData && (
           <>
+
             <div className={cardStyles.infoContainer}>
               <div className={cardStyles.infoCard}>
                 <div className={cardStyles.cardTitle}>Open</div>
@@ -156,24 +167,59 @@ const Home = () => {
             <div className={cardStyles.plotsContainer}>
               <div className={cardStyles.plotItem}>
                 <h2>Forecast Plot</h2>
-                <img src={`data:image/png;base64,${stockData.charts.forecast}`} alt="Forecast Chart" />
+                <img
+                  src={`data:image/png;base64,${stockData.charts.forecast}`}
+                  alt="Forecast Chart"
+                  className={cardStyles.chartThumbnail}
+                  onClick={() => handleChartClick(stockData.charts.forecast)}
+                />
+
               </div>
               <div className={cardStyles.plotItem}>
                 <h2>Future Forecast Plot</h2>
-                <img src={`data:image/png;base64,${stockData.charts.trend_forecast}`} alt="Future Forecast Chart" />
+                <img
+                  src={`data:image/png;base64,${stockData.charts.trend_forecast}`}
+                  alt="Future Forecast Chart"
+                  className={cardStyles.chartThumbnail}
+                  onClick={() => handleChartClick(stockData.charts.trend_forecast)}
+                />
               </div>
             </div>
 
             <div className={cardStyles.plotsContainer}>
               <div className={cardStyles.plotItem}>
                 <h2>MAV Plot</h2>
-                <img src={`data:image/png;base64,${stockData.charts.mav}`} alt="MAV Chart" />
+                <img
+                  src={`data:image/png;base64,${stockData.charts.mav}`}
+                  alt="MAV Chart"
+                  className={cardStyles.chartThumbnail}
+                  onClick={() => handleChartClick(stockData.charts.mav)}
+                />
               </div>
               <div className={cardStyles.plotItem}>
                 <h2>Trend Plot</h2>
-                <img src={`data:image/png;base64,${stockData.charts.trend}`} alt="Trend Chart" />
+                <img
+                  src={`data:image/png;base64,${stockData.charts.trend}`}
+                  alt="Trend Chart"
+                  className={cardStyles.chartThumbnail}
+                  onClick={() => handleChartClick(stockData.charts.trend)}
+                />
+                
               </div>
             </div>
+            {selectedChart && (
+  <div className={cardStyles.modalOverlay}>
+    <div className={cardStyles.modalContent}>
+      <button className={cardStyles.closeButton} onClick={handleCloseModal}>X</button>
+      <img
+        src={`data:image/png;base64,${selectedChart}`}
+        alt="Enlarged Chart"
+        className={cardStyles.enlargedChart}
+      />
+    </div>
+  </div>
+)}
+
           </>
         )}
       </div>
@@ -183,3 +229,5 @@ const Home = () => {
 };
 
 export default Home;
+
+

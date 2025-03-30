@@ -17,6 +17,7 @@
 .appTitle {
   font-family: 'Playfair Display', serif;
   font-size: 2.2rem;
+  text-align: center;
   font-weight: bold;
   color: #1a1a1a;
 }
