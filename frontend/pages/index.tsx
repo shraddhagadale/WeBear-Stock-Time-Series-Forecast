@@ -7,9 +7,6 @@ import backgroundStyles from '../styles/Background.module.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-
-
-
 interface StockData {
   previous_day_info: {
     previous_close: number;
@@ -79,53 +76,50 @@ const Home = () => {
       </div>
 
       <div className="main-container">
-      <div className={styles.headerContainer}>
-  <div className={styles.topRow}>
-    <h1 className={styles.appTitle}>📈 Stock Price Forecasting</h1>
+        <div className={styles.headerContainer}>
+          <div className={styles.topRow}>
+            <h1 className={styles.appTitle}>📈 Stock Price Forecasting</h1>
+            <input
+              type="text"
+              value={ticker}
+              onChange={(e) => setTicker(e.target.value)}
+              placeholder="Enter Stock Ticker (e.g., AAPL)"
+              className={styles.searchBar}
+            />
+            <button
+              onClick={handleFetch}
+              disabled={loading}
+              className={styles.searchButton}
+            >
+              Search
+            </button>
+          </div>
 
-    <input
-      type="text"
-      value={ticker}
-      onChange={(e) => setTicker(e.target.value)}
-      placeholder="Enter Stock Ticker (e.g., AAPL)"
-      className={styles.searchBar}
-    />
-    <button
-      onClick={handleFetch}
-      disabled={loading}
-      className={styles.searchButton}
-    >
-      Search
-    </button>
-  </div>
-
-  <div className={styles.dateInputsRow}>
-    <div className={styles.dateInputGroup}>
-      <label htmlFor="start-date">Start Date:</label>
-      <input
-        type="date"
-        id="start-date"
-        className={styles.dateInput}
-        placeholder="mm/dd/yyyy"
-        value={startDate}
-        onChange={(e) => setStartDate(e.target.value)}
-      />
-    </div>
-    <div className={styles.dateInputGroup}>
-      <label htmlFor="end-date">End Date:</label>
-      <input
-        type="date"
-        id="end-date"
-        className={styles.dateInput}
-        placeholder="mm/dd/yyyy"
-        value={endDate}
-        onChange={(e) => setEndDate(e.target.value)}
-      />
-    </div>
-  </div>
-</div>
-
-      
+          <div className={styles.dateInputsRow}>
+            <div className={styles.dateInputGroup}>
+              <label htmlFor="start-date">Start Date:</label>
+              <input
+                type="date"
+                id="start-date"
+                className={styles.dateInput}
+                placeholder="mm/dd/yyyy"
+                value={startDate}
+                onChange={(e) => setStartDate(e.target.value)}
+              />
+            </div>
+            <div className={styles.dateInputGroup}>
+              <label htmlFor="end-date">End Date:</label>
+              <input
+                type="date"
+                id="end-date"
+                className={styles.dateInput}
+                placeholder="mm/dd/yyyy"
+                value={endDate}
+                onChange={(e) => setEndDate(e.target.value)}
+              />
+            </div>
+          </div>
+        </div>
 
         {error && <div className="text-red-500 text-center mb-4">{error}</div>}
 
@@ -139,10 +133,24 @@ const Home = () => {
         {stockData && (
           <>
             <div className={cardStyles.infoContainer}>
-              <div>High: {stockData.previous_day_info.previous_high.toFixed(2)}</div>
-              <div>Close: {stockData.previous_day_info.previous_close.toFixed(2)}</div>
-              <div>Open: {stockData.previous_day_info.previous_open.toFixed(2)}</div>
-              <div>Volume: {stockData.previous_day_info.volume}</div>
+              <div className={cardStyles.infoCard}>
+                <div className={cardStyles.cardTitle}>Open</div>
+                <div className={cardStyles.cardValue}>${stockData.previous_day_info.previous_open.toFixed(2)}</div>
+              </div>
+              <div className={cardStyles.infoCard}>
+                <div className={cardStyles.cardTitle}>Close</div>
+                <div className={cardStyles.cardValue}>${stockData.previous_day_info.previous_close.toFixed(2)}</div>
+              </div>
+              <div className={cardStyles.infoCard}>
+                <div className={cardStyles.cardTitle}>High</div>
+                <div className={cardStyles.cardValue}>${stockData.previous_day_info.previous_high.toFixed(2)}</div>
+              </div>
+              <div className={cardStyles.infoCard}>
+                <div className={cardStyles.cardTitle}>Volume</div>
+                <div className={cardStyles.cardValue}>
+                  {stockData.previous_day_info.volume.toLocaleString()}
+                </div>
+              </div>
             </div>
 
             <div className={cardStyles.plotsContainer}>
