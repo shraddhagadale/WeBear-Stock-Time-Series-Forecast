@@ -7,7 +7,6 @@ Predict stock trends with historical & future forecasts using ARIMA.
 This project provides a web-based application that forecasts stock prices using advanced time series analysis techniques.  
 Users can input a stock ticker along with a date range to visualize historical data and predictive trends through interactive charts.
 
----
 
 ## Features
 
@@ -19,43 +18,49 @@ Users can input a stock ticker along with a date range to visualize historical d
 - **Dialog & Toasts** – Smooth user feedback for errors
 - **Responsive UI** – Clean and accessible across screen sizes
 
----
 
-## Tech Stack
+## Tech Stack 
 
-| Layer       | Tech Stack                       |
-|-------------|----------------------------------|
-| Frontend    | React + Next.js                  |
-| Backend     | FastAPI                          |
-| Styling     | CSS Modules                      |
-| Forecasting | ARIMA (AutoRegressive Integrated Moving Average)|
-| Visualization | Base64-encoded PNG chart images |
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white)
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)
+![scikit-learn](https://img.shields.io/badge/scikit--learn-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white)
+![Pandas](https://img.shields.io/badge/Pandas-150458?style=for-the-badge&logo=pandas&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
 
----
 
 ## Installation
 
-### 1. Clone the Repository
+### Clone the Repository
 
 ```bash
 git clone https://github.com/gupta-nakul/Stock-Time-Series-Analysis-Forecast.git
 cd Stock-Time-Series-Analysis-Forecast
 ```
-### 2. Setup Frontend
+### Docker Setup (Recommended)
+```bash
+docker-compose up --build
+```
+Frontend: http://localhost:3000
+Backend API: http://localhost:8000
+
+### Setup Frontend
 
 ```bash
 cd frontend
 npm install
 npm run dev
 ```
-Visit http://localhost:3000
+Runs at: http://localhost:3000
 
-### 3. Setup Backend
+### Setup Backend
 ```bash
 cd backend
 pip install -r requirements.txt
 uvicorn main:app --reload
 ```
+Runs at: http://localhost:8000
 
 ## How It Works
 
@@ -65,8 +70,8 @@ uvicorn main:app --reload
 ```json
 {
   "ticker": "AAPL",
-  "start_date": "2020-01-01",
-  "end_date": "2021-01-01"
+  "start_date": "21-01-2022",
+  "end_date": "15-03-2022"
 }
 ```
 4. Backend responds with:
