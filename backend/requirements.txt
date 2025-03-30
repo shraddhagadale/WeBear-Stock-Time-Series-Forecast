@@ -1,7 +1,8 @@
 fastapi
 uvicorn
 yfinance
-statsmodels
 scikit-learn
 pandas
 numpy
+matplotlib
+pmdarima
