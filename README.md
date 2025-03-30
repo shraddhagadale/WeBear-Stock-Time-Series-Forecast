@@ -38,29 +38,12 @@ Users can input a stock ticker along with a date range to visualize historical d
 git clone https://github.com/gupta-nakul/Stock-Time-Series-Analysis-Forecast.git
 cd Stock-Time-Series-Analysis-Forecast
 ```
-### Docker Setup (Recommended)
+### Docker Setup
 ```bash
 docker-compose up --build
 ```
 Frontend: http://localhost:3000
 Backend API: http://localhost:8000
-
-### Setup Frontend
-
-```bash
-cd frontend
-npm install
-npm run dev
-```
-Runs at: http://localhost:3000
-
-### Setup Backend
-```bash
-cd backend
-pip install -r requirements.txt
-uvicorn main:app --reload
-```
-Runs at: http://localhost:8000
 
 ## How It Works
 
