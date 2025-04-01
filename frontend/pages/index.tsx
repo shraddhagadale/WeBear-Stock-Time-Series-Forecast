@@ -60,7 +60,7 @@ const Home = () => {
     setStockData(null);
 
     try {
-      const response = await axios.post("http://localhost:8000/forecast", {
+      const response = await axios.post("http://stock-forecast-env.eba-2gbbpkiu.us-east-1.elasticbeanstalk.com/", {
         ticker,
         start_date: startDate,
         end_date: endDate
